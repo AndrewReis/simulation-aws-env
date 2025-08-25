@@ -2,10 +2,11 @@ import { S3Client, CreateBucketCommand, ListBucketsCommand } from '@aws-sdk/clie
 
 export class S3Service {
   constructor() {
+    console.log('process.env.LOCALSTACK_HOST', process.env.LOCALSTACK_HOST)
     if (process.env.IS_OFFLINE) {
       this.client = new S3Client({
         region: 'us-east-1',
-        endpoint: 'http://localhost:4566',
+        endpoint: `http://${process.env.LOCALSTACK_HOST}:4566`,
         forcePathStyle: true,
         credentials: {
           accessKeyId: 'test',

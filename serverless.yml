@@ -2,7 +2,9 @@ service: simulation-aws-env
 
 provider:
   name: aws
-  runtime: nodejs20.x
+  runtime: nodejs22.x
+  environment:
+    LOCALSTACK_HOST: ${env:LOCALSTACK_HOST, "localhost"}
 
 plugins:
   - serverless-offline
